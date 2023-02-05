@@ -8,17 +8,20 @@ A learning diary of kotlin android development.
 
 ## Description
 
-Bmi calculator:
+<details>
+<summary>Bmi calculator</summary>
+<img src="docs/bmi.png">
+</details>
 
-![img.png](docs/bmi.png)
+<details>
+<summary>Login form</summary>
+<img src="docs/login.png">
+</details>
 
-Login form:
-
-![img.png](docs/login.png)
-
-Calories calculator:
-
-![img.png](docs/calories.png)
+<details>
+<summary>Calories calculator</summary>
+<img src="docs/calories.png">
+</details>
 
 ## Question & Answer
 
