@@ -30,6 +30,12 @@
         tools:layout="@layout/fragment_sensors"/>
 
     <fragment
+        android:id="@+id/nav_theme"
+        android:name="com.kotlin.walkthrough.ui.theme.ThemeFragment"
+        android:label="@string/menu_theme"
+        tools:layout="@layout/fragment_theme"/>
+
+    <fragment
         android:id="@+id/nav_calories"
         android:name="com.kotlin.walkthrough.ui.calories.CaloriesFragment"
         android:label="@string/menu_calories"
