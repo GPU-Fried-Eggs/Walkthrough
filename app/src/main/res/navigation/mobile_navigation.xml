@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.kotlin.walkthrough.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_bmi"
+        android:name="com.kotlin.walkthrough.ui.bmi.BmiFragment"
+        android:label="@string/menu_bmi"
+        tools:layout="@layout/fragment_bmi"/>
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.kotlin.walkthrough.ui.login.LoginFragment"
+        android:label="@string/menu_login"
+        tools:layout="@layout/fragment_login"/>
+
+    <fragment
+        android:id="@+id/nav_sensors"
+        android:name="com.kotlin.walkthrough.ui.sensor.SensorsFragment"
+        android:label="@string/menu_sensors"
+        tools:layout="@layout/fragment_sensors"/>
+
+    <fragment
+        android:id="@+id/nav_calories"
+        android:name="com.kotlin.walkthrough.ui.calories.CaloriesFragment"
+        android:label="@string/menu_calories"
+        tools:layout="@layout/fragment_calories"/>
+</navigation>
