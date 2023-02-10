@@ -12,7 +12,9 @@
     <string name="menu_login">Login</string>
     <string name="menu_sensors">Sensors</string>
     <string name="menu_theme">Theme</string>
+    <string name="menu_electricity">Electricity</string>
     <string name="menu_calories">Calories</string>
+    <string name="menu_alcometer">Alcometer</string>
 
     <string name="bmi_header">Body mass index</string>
     <string name="bmi_height">Height</string>
@@ -26,10 +28,23 @@
     <string name="login_password_placeholder">Enter Password</string>
     <string name="login_submit">Submit</string>
 
+    <string name="electricity_header">Cost of Electricity</string>
+    <string name="electricity_consumption">Consumption in kWh</string>
+    <string name="electricity_price">Price/kWh %s €</string>
+    <string name="electricity_vat">VAT 10%</string>
+    <string name="electricity_result">%s €</string>
+
     <string name="calories_header">Calories</string>
     <string name="calories_height">Height</string>
     <string name="calories_weight">Weight</string>
     <string name="calories_age">Age</string>
     <string name="calories_intensity">Select physical activity intensity</string>
     <string name="calories_result">Total daily energy expenditure %s</string>
+
+    <string name="alcometer_header">Alcometer</string>
+    <string name="alcometer_weight">Enter weight</string>
+    <string name="alcometer_bottles">Select bottles</string>
+    <string name="alcometer_hours">Select hours</string>
+    <string name="alcometer_result">Alcohol Level %s</string>
+    <string name="alcometer_submit">Calculate</string>
 </resources>

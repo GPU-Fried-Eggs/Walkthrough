@@ -25,8 +25,16 @@
             android:icon="@drawable/ic_menu_theme"
             android:title="@string/menu_theme" />
         <item
+            android:id="@+id/nav_electricity"
+            android:icon="@drawable/ic_menu_electricity"
+            android:title="@string/menu_electricity" />
+        <item
             android:id="@+id/nav_calories"
             android:icon="@drawable/ic_menu_calories"
             android:title="@string/menu_calories" />
+        <item
+            android:id="@+id/nav_alcometer"
+            android:icon="@drawable/ic_menu_alcometer"
+            android:title="@string/menu_alcometer" />
     </group>
 </menu>

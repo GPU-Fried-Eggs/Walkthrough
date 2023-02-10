@@ -19,6 +19,11 @@ A learning diary of kotlin android development.
 </details>
 
 <details>
+<summary>Custom theming</summary>
+<img src="docs/theme.png">
+</details>
+
+<details>
 <summary>Calories calculator</summary>
 <img src="docs/calories.png">
 </details>

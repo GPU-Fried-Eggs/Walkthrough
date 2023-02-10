@@ -42,4 +42,3 @@ fun Demo() {
 @Preview(name = "Themed")
 @Composable
 fun PreviewDemo() = Demo()
-
