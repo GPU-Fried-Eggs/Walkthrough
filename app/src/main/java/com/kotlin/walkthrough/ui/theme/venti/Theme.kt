@@ -1,4 +1,4 @@
-package com.kotlin.walkthrough.ui.theme
+package com.kotlin.walkthrough.ui.theme.venti
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -33,7 +33,7 @@ private val DarkColors = darkColors(
 )
 
 @Composable
-fun ThemingTheme(
+fun VentiTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

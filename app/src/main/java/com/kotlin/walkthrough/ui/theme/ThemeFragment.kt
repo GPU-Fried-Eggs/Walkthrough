@@ -1,37 +1,52 @@
 package com.kotlin.walkthrough.ui.theme
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.fragment.app.Fragment
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.kotlin.walkthrough.ui.theme.venti.VentiTheme
 
-class ThemeFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View = ComposeView(requireContext()).apply {
-        // Dispose the Composition when viewLifecycleOwner is destroyed
-        setViewCompositionStrategy(
-            ViewCompositionStrategy.DisposeOnLifecycleDestroyed(viewLifecycleOwner)
-        )
+@Composable
+fun ThemeFragment() {
+    val spacingModifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 16.dp, vertical = 8.dp)
 
-        setContent {
-            ThemingTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+    VentiTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colors.background
+        ) {
+            Column {
+                Text(
+                    text = "Themed Title",
+                    style = MaterialTheme.typography.h5,
+                    modifier = spacingModifier
+                )
+                OutlinedTextField(
+                    value = "",
+                    label = { Text(text = "Themed Text Field") },
+                    modifier = spacingModifier,
+                    onValueChange = {},
+                )
+                Button(
+                    onClick = {},
+                    modifier = spacingModifier
                 ) {
-                    Demo()
+                    Text(text = "Submit")
                 }
             }
         }
     }
+}
+
+@Preview(name = "Themed")
+@Composable
+fun ThemePreview() {
+    ThemeFragment()
 }

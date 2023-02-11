@@ -1,20 +1,17 @@
 <resources>
     <string name="app_name">walkthrough</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_bmi">BMI</string>
-    <string name="menu_login">Login</string>
-    <string name="menu_sensors">Sensors</string>
-    <string name="menu_theme">Theme</string>
-    <string name="menu_electricity">Electricity</string>
-    <string name="menu_calories">Calories</string>
-    <string name="menu_alcometer">Alcometer</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_bmi">BMI</string>
+    <string name="nav_login">Login</string>
+    <string name="nav_sensors">Sensors</string>
+    <string name="nav_theme">Theme</string>
+    <string name="nav_electricity">Electricity</string>
+    <string name="nav_calories">Calories</string>
+    <string name="nav_alcometer">Alcometer</string>
 
     <string name="bmi_header">Body mass index</string>
     <string name="bmi_height">Height</string>

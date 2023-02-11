@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.toSize
 @Composable
 fun AlcometerSelectable(text: String, collection: Array<String>, value: String, onValueChange: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
-    var textfieldSize by remember { mutableStateOf(Size.Zero) }
+    var textFieldSize by remember { mutableStateOf(Size.Zero) }
 
     val rotation: Float by animateFloatAsState(if (expanded) 180f else 0f)
 
@@ -34,7 +34,7 @@ fun AlcometerSelectable(text: String, collection: Array<String>, value: String, 
             modifier = Modifier
                 .fillMaxWidth()
                 .onGloballyPositioned { coordinates ->
-                    textfieldSize = coordinates.size.toSize()
+                    textFieldSize = coordinates.size.toSize()
                 },
             label = { Text(text) },
             trailingIcon = {
@@ -54,7 +54,7 @@ fun AlcometerSelectable(text: String, collection: Array<String>, value: String, 
             expanded = expanded,
             onDismissRequest = { expanded = false },
             modifier = Modifier.width(with(LocalDensity.current) {
-                textfieldSize.width.toDp()
+                textFieldSize.width.toDp()
             })
         ) {
             collection.forEach { label ->

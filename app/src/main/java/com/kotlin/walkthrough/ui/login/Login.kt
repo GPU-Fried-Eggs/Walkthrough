@@ -71,12 +71,12 @@ fun Login() {
                 IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
                     if (passwordVisibility)
                         Icon(
-                            painter = painterResource(R.drawable.ic_baseline_visibility_off),
+                            painter = painterResource(R.drawable.ic_visibility_off),
                             contentDescription = "Show password"
                         )
                     else
                         Icon(
-                            painter = painterResource(R.drawable.ic_baseline_visibility),
+                            painter = painterResource(R.drawable.ic_visibility_on),
                             contentDescription = "Hide password"
                         )
                 }

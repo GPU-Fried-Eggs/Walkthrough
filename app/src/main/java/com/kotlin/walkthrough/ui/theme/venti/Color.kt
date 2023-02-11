@@ -1,4 +1,4 @@
-package com.kotlin.walkthrough.ui.theme
+package com.kotlin.walkthrough.ui.theme.venti
 
 import androidx.compose.ui.graphics.Color
 
