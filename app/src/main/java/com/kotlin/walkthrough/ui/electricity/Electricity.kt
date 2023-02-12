@@ -80,6 +80,8 @@ fun Electricity() {
     }
 }
 
-@Preview(name = "Cost of electricity")
+@Preview
 @Composable
-fun PreviewCalories() = Electricity()
+fun ElectricityPreview() {
+    Electricity()
+}

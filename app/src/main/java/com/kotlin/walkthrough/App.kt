@@ -3,13 +3,10 @@ package com.kotlin.walkthrough
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -18,14 +15,17 @@ import com.kotlin.walkthrough.ui.bmi.BmiFragment
 import com.kotlin.walkthrough.ui.calories.CaloriesFragment
 import com.kotlin.walkthrough.ui.electricity.ElectricityFragment
 import com.kotlin.walkthrough.ui.home.HomeFragment
+import com.kotlin.walkthrough.ui.hrlimit.HeartRateLimitFragment
 import com.kotlin.walkthrough.ui.login.LoginFragment
 import com.kotlin.walkthrough.ui.navigation.Drawer
+import com.kotlin.walkthrough.ui.navigation.DrawerShape
 import com.kotlin.walkthrough.ui.navigation.TopBar
 import com.kotlin.walkthrough.ui.sensor.SensorsFragment
 import com.kotlin.walkthrough.ui.theme.ThemeFragment
 
 sealed class NavigationConfig(var route: String, @DrawableRes var icon: Int, var title: Int) {
     object Home : NavigationConfig("home", R.drawable.ic_nav_home, R.string.nav_home)
+    object HRLimit: NavigationConfig("hr", R.drawable.ic_nav_hr, R.string.nav_hr)
     object Bmi: NavigationConfig("bmi", R.drawable.ic_nav_bmi, R.string.nav_bmi)
     object Login: NavigationConfig("login", R.drawable.ic_nav_login, R.string.nav_login)
     object Sensors: NavigationConfig("sensors", R.drawable.ic_nav_sensors, R.string.nav_sensors)
@@ -35,8 +35,10 @@ sealed class NavigationConfig(var route: String, @DrawableRes var icon: Int, var
     object Alcometer: NavigationConfig("alcometer", R.drawable.ic_nav_alcometer, R.string.nav_alcometer)
 
     companion object {
-        @JvmStatic fun toList() : List<NavigationConfig> {
-            return listOf(Home, Bmi, Login, Sensors, Theme, Electricity, Calories, Alcometer)
+        @JvmStatic fun toList(): List<NavigationConfig> {
+            return listOf(
+                Home, HRLimit, Bmi, Login, Sensors, Theme, Electricity, Calories, Alcometer,
+            )
         }
     }
 }
@@ -49,10 +51,12 @@ fun App() {
 
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState) },
+        topBar = {
+            TopBar(scope = scope, scaffoldState = scaffoldState)
+        },
         drawerContent = {
             Drawer(NavigationConfig.toList(), scope, scaffoldState, navController)
-        }
+        },
     ) {
         NavHost(
             modifier = Modifier.padding(it),
@@ -60,6 +64,7 @@ fun App() {
             startDestination = NavigationConfig.Home.route
         ) {
             composable(NavigationConfig.Home.route) { HomeFragment() }
+            composable(NavigationConfig.HRLimit.route) { HeartRateLimitFragment() }
             composable(NavigationConfig.Bmi.route) { BmiFragment() }
             composable(NavigationConfig.Login.route) { LoginFragment() }
             composable(NavigationConfig.Sensors.route) { SensorsFragment() }

@@ -21,12 +21,10 @@ fun Sensors() {
     Column {
         Text(
             text = "Available sensors",
-            fontSize = 24.sp,
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
             color = MaterialTheme.colors.primary,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+            fontSize = 24.sp,
+            textAlign = TextAlign.Center
         )
 
         LazyColumn {
@@ -43,6 +41,8 @@ fun Sensors() {
     }
 }
 
-@Preview(name = "Sensors")
+@Preview
 @Composable
-fun PreviewSensors() = Sensors()
+fun SensorsPreview() {
+    Sensors()
+}

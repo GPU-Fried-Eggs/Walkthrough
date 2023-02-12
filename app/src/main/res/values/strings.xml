@@ -12,6 +12,11 @@
     <string name="nav_electricity">Electricity</string>
     <string name="nav_calories">Calories</string>
     <string name="nav_alcometer">Alcometer</string>
+    <string name="nav_hr">HRLimit</string>
+
+    <string name="hr_header">Heart Rate Limit</string>
+    <string name="hr_age">Age</string>
+    <string name="hr_result">HR limits are: %.1f - %.1f</string>
 
     <string name="bmi_header">Body mass index</string>
     <string name="bmi_height">Height</string>

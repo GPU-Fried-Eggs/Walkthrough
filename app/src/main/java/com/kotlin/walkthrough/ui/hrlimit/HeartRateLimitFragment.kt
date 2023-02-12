@@ -1,4 +1,4 @@
-package com.kotlin.walkthrough.ui.bmi
+package com.kotlin.walkthrough.ui.hrlimit
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -11,11 +11,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kotlin.walkthrough.ArchType
-import com.kotlin.walkthrough.ui.bmi.mvi.Bmi as Bmi_MVI
-import com.kotlin.walkthrough.ui.bmi.mvvm.Bmi as Bmi_MVVM
+import com.kotlin.walkthrough.ui.hrlimit.mvi.HeartRateLimit as HeartRateLimit_MVI
+import com.kotlin.walkthrough.ui.hrlimit.mvvm.HeartRateLimit as HeartRateLimit_MVVM
 
 @Composable
-fun BmiFragment() {
+fun HeartRateLimitFragment() {
     val navController = rememberNavController()
 
     Scaffold(
@@ -26,8 +26,8 @@ fun BmiFragment() {
             navController = navController,
             startDestination = ArchType.MVI.route
         ) {
-            composable(ArchType.MVI.route) { Bmi_MVI() }
-            composable(ArchType.MVVM.route) { Bmi_MVVM() }
+            composable(ArchType.MVI.route) { HeartRateLimit_MVI() }
+            composable(ArchType.MVVM.route) { HeartRateLimit_MVVM() }
         }
     }
 }
@@ -58,6 +58,6 @@ private fun NavigationType(navController: NavController) {
 
 @Preview
 @Composable
-private fun BmiFragmentPreview() {
-    BmiFragment()
+private fun HeartRateLimitFragmentPreview() {
+    HeartRateLimitFragment()
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 
@@ -69,4 +70,17 @@ fun AlcometerSelectable(text: String, collection: Array<String>, value: String, 
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun AlcometerSelectablePreview() {
+    var input: String by remember { mutableStateOf("") }
+
+    AlcometerSelectable(
+        text = "Preview Content",
+        collection = (1..4).map { it.toString() }.toTypedArray(),
+        value = input,
+        onValueChange = { input = it }
+    )
 }

@@ -45,7 +45,7 @@ fun ThemeFragment() {
     }
 }
 
-@Preview(name = "Themed")
+@Preview
 @Composable
 fun ThemePreview() {
     ThemeFragment()

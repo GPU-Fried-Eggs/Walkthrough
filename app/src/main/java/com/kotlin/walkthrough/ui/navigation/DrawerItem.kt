@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kotlin.walkthrough.R
 import com.kotlin.walkthrough.NavigationConfig
@@ -60,5 +61,22 @@ fun DrawerItem(config: NavigationConfig, selected: Boolean, onItemClick: (Naviga
                 color = if (selected) MaterialTheme.colors.primary else Color.Black
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun DrawerItemPreview() {
+    Column {
+        DrawerItem(
+            config = NavigationConfig.Home,
+            selected = true,
+            onItemClick = {}
+        )
+        DrawerItem(
+            config = NavigationConfig.Home,
+            selected = false,
+            onItemClick = {}
+        )
     }
 }

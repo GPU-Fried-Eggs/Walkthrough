@@ -108,6 +108,8 @@ fun Login() {
     }
 }
 
-@Preview(name = "Login")
+@Preview
 @Composable
-fun PreviewLogin() = Login()
+fun LoginPreview() {
+    Login()
+}

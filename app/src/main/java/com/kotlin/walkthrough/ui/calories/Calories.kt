@@ -6,14 +6,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.kotlin.walkthrough.Debug
 import com.kotlin.walkthrough.R
-import com.kotlin.walkthrough.ui.calories.components.*
 
 @Composable
 fun Calories() {
@@ -38,10 +34,10 @@ fun Calories() {
         modifier = Modifier.padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Heading(stringResource(R.string.calories_header))
-        ParamsField(paramsInput) { paramsInput = it }
-        GenderSelection { genderInput = it }
-        ActivityIntensity { activityInput = it }
+        CaloriesHeading(stringResource(R.string.calories_header))
+        CaloriesParams(paramsInput) { paramsInput = it }
+        CaloriesGender { genderInput = it }
+        CaloriesActivity { activityInput = it }
         Debug(
             text = {
                 Text(stringResource(
@@ -64,6 +60,8 @@ fun Calories() {
     }
 }
 
-@Preview(name = "Calories calculator")
+@Preview
 @Composable
-fun PreviewCalories() = Calories()
+fun CaloriesPreview() {
+    Calories()
+}

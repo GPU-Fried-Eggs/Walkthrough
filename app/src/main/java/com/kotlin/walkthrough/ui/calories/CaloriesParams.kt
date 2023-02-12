@@ -1,4 +1,4 @@
-package com.kotlin.walkthrough.ui.calories.components
+package com.kotlin.walkthrough.ui.calories
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -11,11 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kotlin.walkthrough.R
 
 @Composable
-fun ParamsField(Inputs: Map<String, String>, onValueChange: (Map<String, String>) -> Unit) {
+fun CaloriesParams(Inputs: Map<String, String>, onValueChange: (Map<String, String>) -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
@@ -61,4 +62,10 @@ fun ParamsField(Inputs: Map<String, String>, onValueChange: (Map<String, String>
             onValueChange(current)
         }
     )
+}
+
+@Preview
+@Composable
+fun CaloriesParamsPreview() {
+    CaloriesParams(mapOf(), {})
 }

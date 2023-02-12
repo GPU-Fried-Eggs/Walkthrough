@@ -12,8 +12,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kotlin.walkthrough.Debug
 import com.kotlin.walkthrough.R
-import com.kotlin.walkthrough.ui.calories.components.GenderSelection
-import com.kotlin.walkthrough.ui.calories.components.Heading
+import com.kotlin.walkthrough.ui.calories.CaloriesGender
+import com.kotlin.walkthrough.ui.calories.CaloriesHeading
 
 @Composable
 fun Alcometer() {
@@ -41,14 +41,14 @@ fun Alcometer() {
         modifier = Modifier.padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Heading(stringResource(R.string.alcometer_header))
+        CaloriesHeading(stringResource(R.string.alcometer_header))
         OutlinedTextField(
             value = weightInput,
             onValueChange = { weightInput = it },
             modifier = Modifier.fillMaxWidth(),
             label = { Text(stringResource(R.string.alcometer_weight)) },
         )
-        GenderSelection { genderInput = it }
+        CaloriesGender { genderInput = it }
         AlcometerSelectable(
             text = stringResource(R.string.alcometer_bottles),
             collection = (1..10).map { it.toString() }.toTypedArray(),
@@ -86,6 +86,8 @@ fun Alcometer() {
     }
 }
 
-@Preview(name = "Alcometer calculator")
+@Preview
 @Composable
-fun PreviewAlcometer() = Alcometer()
+private fun AlcometerPreview() {
+    Alcometer()
+}

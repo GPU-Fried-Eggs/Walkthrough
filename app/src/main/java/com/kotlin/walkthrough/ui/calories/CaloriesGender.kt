@@ -1,4 +1,4 @@
-package com.kotlin.walkthrough.ui.calories.components
+package com.kotlin.walkthrough.ui.calories
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -9,10 +9,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun GenderSelection(onValueChange: (String) -> Unit) {
+fun CaloriesGender(onValueChange: (String) -> Unit) {
     var selected by remember { mutableStateOf("Male") }
 
     Column {
@@ -53,4 +54,10 @@ fun GenderSelection(onValueChange: (String) -> Unit) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun CaloriesGenderPreview() {
+    CaloriesGender({})
 }

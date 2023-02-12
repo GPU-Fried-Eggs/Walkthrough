@@ -1,4 +1,4 @@
-package com.kotlin.walkthrough.ui.calories.components
+package com.kotlin.walkthrough.ui.calories
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -18,17 +18,18 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import com.kotlin.walkthrough.R
 
 @Composable
-fun ActivityIntensity(onValueChange: (Float) -> Unit) {
+fun CaloriesActivity(onValueChange: (Float) -> Unit) {
     val intensityMap = mapOf("Rare" to 1.2f, "Light" to 1.375f, "Moderate" to 1.55f, "Heavy" to 1.725f)
 
     var expanded by remember { mutableStateOf(false) }
     var selectedText by remember { mutableStateOf("Rare") }
-    var textfieldSize by remember { mutableStateOf(Size.Zero) }
+    var textFieldSize by remember { mutableStateOf(Size.Zero) }
 
     val labelColor =
         if (expanded) MaterialTheme.colors.primary.copy(alpha = ContentAlpha.high)
@@ -60,7 +61,7 @@ fun ActivityIntensity(onValueChange: (Float) -> Unit) {
                         color = MaterialTheme.colors.onSurface.copy(alpha = 0f),
                         shape = MaterialTheme.shapes.small
                     )
-                    .onGloballyPositioned { textfieldSize = it.size.toSize() }
+                    .onGloballyPositioned { textFieldSize = it.size.toSize() }
                     .clip(MaterialTheme.shapes.small)
                     .clickable {
                         expanded = !expanded
@@ -94,7 +95,7 @@ fun ActivityIntensity(onValueChange: (Float) -> Unit) {
             expanded = expanded,
             onDismissRequest = { expanded = false },
             modifier = Modifier.width(with(LocalDensity.current) {
-                textfieldSize.width.toDp()
+                textFieldSize.width.toDp()
             })
         ) {
             intensityMap.keys.forEach { label ->
@@ -156,4 +157,10 @@ fun ActivityIntensity(onValueChange: (Float) -> Unit) {
 //            }
 //        }
 //    }
+}
+
+@Preview
+@Composable
+private fun CaloriesActivityIntensityPreview() {
+    CaloriesActivity({})
 }
