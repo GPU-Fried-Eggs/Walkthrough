@@ -14,11 +14,9 @@ import androidx.compose.ui.unit.sp
 fun Heading(title: String) {
     Text(
         text = title,
-        fontSize = 24.sp,
+        modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
         color = MaterialTheme.colors.primary,
         textAlign = TextAlign.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 16.dp, bottom = 16.dp)
+        style = MaterialTheme.typography.h4
     )
 }

@@ -28,9 +28,7 @@ fun TopBar(scope: CoroutineScope, scaffoldState: ScaffoldState){
         },
         actions = {
             IconButton(
-                onClick = {
-                    expanded = !expanded
-                }
+                onClick = { expanded = !expanded }
             ) {
                 Icon(Icons.Filled.MoreVert, "More")
             }

@@ -51,7 +51,7 @@ fun App() {
         scaffoldState = scaffoldState,
         topBar = { TopBar(scope = scope, scaffoldState = scaffoldState) },
         drawerContent = {
-            Drawer(configs = NavigationConfig.toList(), scope = scope, scaffoldState = scaffoldState, navController = navController)
+            Drawer(NavigationConfig.toList(), scope, scaffoldState, navController)
         }
     ) {
         NavHost(

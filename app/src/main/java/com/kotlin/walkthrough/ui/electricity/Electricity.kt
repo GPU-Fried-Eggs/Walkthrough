@@ -11,7 +11,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.kotlin.walkthrough.R
 import kotlin.math.roundToInt
 
@@ -20,9 +19,12 @@ fun Electricity() {
     var consumeInput: String by remember { mutableStateOf("") }
     var priceInput: Float by remember { mutableStateOf(0.25f) }
     var lowVAT: Boolean by remember { mutableStateOf(false) }
+
     val consume = consumeInput.toFloatOrNull() ?: 0.0f
     val price = priceInput
+
     val vat = if (lowVAT) 0.1f else 0.24f;
+
     val cost = ((price * 100.0f).roundToInt() / 100.0f * consume) * (1 + vat)
 
     Column(
@@ -32,12 +34,10 @@ fun Electricity() {
         // header
         Text(
             text = stringResource(R.string.electricity_header),
-            fontSize = 24.sp,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
             color = MaterialTheme.colors.primary,
             textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp, bottom = 16.dp)
+            style = MaterialTheme.typography.h4
         )
         // consumption input field
         OutlinedTextField(

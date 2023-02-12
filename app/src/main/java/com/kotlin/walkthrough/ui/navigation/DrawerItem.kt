@@ -51,7 +51,7 @@ fun DrawerItem(config: NavigationConfig, selected: Boolean, onItemClick: (Naviga
                 contentDescription = stringResource(config.title),
                 modifier = Modifier
                     .fillMaxHeight(0.9f)
-                    .padding(start = ButtonDefaults.IconSpacing),
+                    .padding(start = ButtonDefaults.IconSpacing.times(2)),
                 tint = if (selected) MaterialTheme.colors.primary else Color.Black
             )
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))

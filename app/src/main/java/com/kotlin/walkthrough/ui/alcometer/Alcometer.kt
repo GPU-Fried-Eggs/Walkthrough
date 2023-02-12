@@ -1,16 +1,16 @@
 package com.kotlin.walkthrough.ui.alcometer
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kotlin.walkthrough.Debug
 import com.kotlin.walkthrough.R
 import com.kotlin.walkthrough.ui.calories.components.GenderSelection
 import com.kotlin.walkthrough.ui.calories.components.Heading
@@ -35,7 +35,7 @@ fun Alcometer() {
         else -> 0.0f
     }
 
-    val result = (grams - burning * hours) / (weight * multiplier)
+    val result = if (weight > 0.0f && multiplier > 0.0f) (grams - burning * hours) / (weight * multiplier) else 0.0f
 
     Column(
         modifier = Modifier.padding(8.dp),
@@ -61,23 +61,27 @@ fun Alcometer() {
             value = hoursInput,
             onValueChange = { hoursInput = it }
         )
-        Text(
-            text = stringResource(
-                R.string.calories_result,
-                String.format("%.2f", result).replace(",", ".")
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp)
-        )
-        Button(
-            onClick = { /*TODO*/ },
-            modifier = Modifier.fillMaxWidth()
+        Debug(
+            text = {
+                Text(stringResource(
+                    R.string.alcometer_result,
+                    String.format("%.2f", result).replace(",", ".")
+                ))
+            }
         ) {
-            Text(
-                text = stringResource(R.string.alcometer_submit).uppercase(),
-                style = TextStyle(letterSpacing = 8.sp)
-            )
+            Button(
+                onClick = it,
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+                    .padding(vertical = 16.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .height(48.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.alcometer_submit).uppercase(),
+                    style = TextStyle(letterSpacing = 8.sp)
+                )
+            }
         }
     }
 }

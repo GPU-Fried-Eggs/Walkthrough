@@ -20,8 +20,10 @@ import kotlin.math.pow
 fun Bmi() {
     var heightInput: String by remember { mutableStateOf("") }
     var weightInput: String by remember { mutableStateOf("") }
+
     val height = heightInput.toFloatOrNull() ?: 0.0f
     val weight = weightInput.toIntOrNull() ?: 0
+
     val bmi = if (weight > 0 && height > 0) weight / height.pow(2) else 0.0
 
     Column(
@@ -31,10 +33,10 @@ fun Bmi() {
         // header
         Text(
             text = stringResource(R.string.bmi_header),
-            modifier = Modifier.fillMaxWidth().padding(top = 16.dp, bottom = 16.dp),
+            modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
             color = MaterialTheme.colors.primary,
-            fontSize = 24.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.h4
         )
         // height input field
         OutlinedTextField(

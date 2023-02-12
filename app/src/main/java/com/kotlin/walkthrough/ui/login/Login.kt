@@ -14,6 +14,7 @@ import androidx.compose.ui.text.input.*
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
+import com.kotlin.walkthrough.Debug
 import com.kotlin.walkthrough.R
 
 @Composable
@@ -21,8 +22,6 @@ fun Login() {
     var accountInput: String by remember { mutableStateOf("") }
     var passwordInput: String by remember { mutableStateOf("") }
     var passwordVisibility: Boolean by remember { mutableStateOf(false) }
-
-    var showDebug: Boolean by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier.padding(8.dp),
@@ -32,12 +31,10 @@ fun Login() {
         // header
         Text(
             text = stringResource(R.string.login_header),
-            fontSize = 32.sp,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
             color = MaterialTheme.colors.primary,
             textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+            style = MaterialTheme.typography.h4
         )
         // user account input field
         OutlinedTextField(
@@ -83,37 +80,30 @@ fun Login() {
             },
             modifier = Modifier.fillMaxWidth(0.9f)
         )
-        Button(
-            onClick = { showDebug = true },
-            modifier = Modifier
-                .fillMaxWidth(0.8f)
-                .padding(top = 16.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.login_submit),
-                modifier = Modifier
-                    .padding(vertical = 8.dp)
-            )
-        }
-        if (showDebug) {
-            AlertDialog(
-                onDismissRequest = { showDebug = false },
-                title = null,
-                text = {
-                    Text(
+        Debug(
+            text = {
+                Text(
+                    text =
                         """
-                        |account: ${accountInput.ifEmpty { "None" }}
-                        |password: ${passwordInput.ifEmpty { "None" }}
-                        """.trimMargin()
-                    )
-                },
-                buttons = {
-                    TextButton(onClick = { showDebug = false }) {
-                        Text("Done")
-                    }
-                },
-                modifier = Modifier.fillMaxWidth()
-            )
+                            |account: ${accountInput.ifEmpty { "None" }}
+                            |password: ${passwordInput.ifEmpty { "None" }}
+                        """.trimMargin(),
+                    lineHeight = 24.sp
+                )
+            }
+        ) {
+            Button(
+                onClick = it,
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+                    .padding(top = 16.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.login_submit),
+                    modifier = Modifier
+                        .padding(vertical = 8.dp)
+                )
+            }
         }
     }
 }
