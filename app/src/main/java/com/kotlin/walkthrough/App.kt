@@ -6,7 +6,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -16,9 +15,9 @@ import com.kotlin.walkthrough.ui.calories.CaloriesFragment
 import com.kotlin.walkthrough.ui.electricity.ElectricityFragment
 import com.kotlin.walkthrough.ui.home.HomeFragment
 import com.kotlin.walkthrough.ui.hrlimit.HeartRateLimitFragment
+import com.kotlin.walkthrough.ui.location.LocationFragment
 import com.kotlin.walkthrough.ui.login.LoginFragment
 import com.kotlin.walkthrough.ui.navigation.Drawer
-import com.kotlin.walkthrough.ui.navigation.DrawerShape
 import com.kotlin.walkthrough.ui.navigation.TopBar
 import com.kotlin.walkthrough.ui.sensor.SensorsFragment
 import com.kotlin.walkthrough.ui.theme.ThemeFragment
@@ -33,11 +32,13 @@ sealed class NavigationConfig(var route: String, @DrawableRes var icon: Int, var
     object Electricity: NavigationConfig("electricity", R.drawable.ic_nav_electricity, R.string.nav_electricity)
     object Calories: NavigationConfig("calories", R.drawable.ic_nav_calories, R.string.nav_calories)
     object Alcometer: NavigationConfig("alcometer", R.drawable.ic_nav_alcometer, R.string.nav_alcometer)
+    object Location: NavigationConfig("location", R.drawable.ic_nav_location, R.string.nav_location)
 
     companion object {
         @JvmStatic fun toList(): List<NavigationConfig> {
             return listOf(
-                Home, HRLimit, Bmi, Login, Sensors, Theme, Electricity, Calories, Alcometer,
+                Home, HRLimit, Bmi, Login, Sensors, Theme, Electricity,
+                Calories, Alcometer, Location
             )
         }
     }
@@ -72,6 +73,7 @@ fun App() {
             composable(NavigationConfig.Electricity.route) { ElectricityFragment() }
             composable(NavigationConfig.Calories.route) { CaloriesFragment() }
             composable(NavigationConfig.Alcometer.route) { AlcometerFragment() }
+            composable(NavigationConfig.Location.route) { LocationFragment() }
         }
     }
 }
