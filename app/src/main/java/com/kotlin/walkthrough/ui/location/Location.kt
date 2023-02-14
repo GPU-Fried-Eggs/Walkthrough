@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.kotlin.walkthrough.R
 
@@ -21,13 +22,13 @@ fun Location(
     locationViewModel: LocationViewModel = LocationViewModel(context)
 ) {
     val location by locationViewModel.getLocationLiveData().observeAsState()
-    var enable: Boolean by remember { mutableStateOf(false) }
+    var enableGService: Boolean by remember { mutableStateOf(false) }
     var show: Boolean by remember { mutableStateOf(false) }
 
     GoogleApiAvailability.getInstance().apply {
-        enable =
+        enableGService =
             when(isGooglePlayServicesAvailable(context)) {
-                1 -> true
+                ConnectionResult.SUCCESS -> true
                 else -> false
             }
     }
@@ -49,10 +50,10 @@ fun Location(
         }
         Row(
             modifier = Modifier.fillMaxWidth(0.8f).align(Alignment.CenterHorizontally),
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (enable) {
+            if (enableGService) {
                 Text(location?.latitude.toString())
                 Text(location?.longitude.toString())
             } else {
