@@ -52,6 +52,7 @@
     <string name="alcometer_submit">Calculate</string>
 
     <string name="location_button">Get current location</string>
+    <string name="location_noGMS">Require play service for gms service. Please Login google account for active service</string>
     <string name="location_request_header">Turn on location service</string>
     <string name="location_request_content">Give this app a permission to proceed.</string>
 </resources>
