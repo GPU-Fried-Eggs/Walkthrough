@@ -28,6 +28,16 @@ A learning diary of kotlin android development.
 <img src="docs/calories.png">
 </details>
 
+<details>
+<summary>GMS Location</summary>
+<img src="docs/location.png">
+</details>
+
+<details>
+<summary>Heart rate limit</summary>
+<img src="docs/hrlimit.png">
+</details>
+
 ## Question & Answer
 
 ### No Android SDK?
