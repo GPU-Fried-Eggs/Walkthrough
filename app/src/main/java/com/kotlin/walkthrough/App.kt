@@ -9,18 +9,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.kotlin.walkthrough.ui.alcometer.AlcometerFragment
-import com.kotlin.walkthrough.ui.bmi.BmiFragment
-import com.kotlin.walkthrough.ui.calories.CaloriesFragment
-import com.kotlin.walkthrough.ui.electricity.ElectricityFragment
-import com.kotlin.walkthrough.ui.home.HomeFragment
-import com.kotlin.walkthrough.ui.hrlimit.HeartRateLimitFragment
-import com.kotlin.walkthrough.ui.location.LocationFragment
-import com.kotlin.walkthrough.ui.login.LoginFragment
-import com.kotlin.walkthrough.ui.navigation.Drawer
-import com.kotlin.walkthrough.ui.navigation.TopBar
-import com.kotlin.walkthrough.ui.sensor.SensorsFragment
-import com.kotlin.walkthrough.ui.theme.ThemeFragment
+import com.kotlin.walkthrough.artifacts.alcometer.AlcometerFragment
+import com.kotlin.walkthrough.artifacts.bmi.BmiFragment
+import com.kotlin.walkthrough.artifacts.calories.CaloriesFragment
+import com.kotlin.walkthrough.artifacts.electricity.ElectricityFragment
+import com.kotlin.walkthrough.artifacts.home.HomeFragment
+import com.kotlin.walkthrough.artifacts.hrlimit.HeartRateLimitFragment
+import com.kotlin.walkthrough.artifacts.location.LocationFragment
+import com.kotlin.walkthrough.artifacts.login.LoginFragment
+import com.kotlin.walkthrough.artifacts.navigation.Drawer
+import com.kotlin.walkthrough.artifacts.navigation.TopBar
+import com.kotlin.walkthrough.artifacts.sensor.SensorsFragment
+import com.kotlin.walkthrough.artifacts.theme.ThemeFragment
 
 sealed class NavigationConfig(var route: String, @DrawableRes var icon: Int, var title: Int) {
     object Home : NavigationConfig("home", R.drawable.ic_nav_home, R.string.nav_home)
