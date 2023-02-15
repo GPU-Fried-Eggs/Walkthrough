@@ -21,6 +21,7 @@ import com.kotlin.walkthrough.artifacts.navigation.Drawer
 import com.kotlin.walkthrough.artifacts.navigation.TopBar
 import com.kotlin.walkthrough.artifacts.sensor.SensorsFragment
 import com.kotlin.walkthrough.artifacts.theme.ThemeFragment
+import com.kotlin.walkthrough.artifacts.todo.TodoFragment
 
 sealed class NavigationConfig(var route: String, @DrawableRes var icon: Int, var title: Int) {
     object Home : NavigationConfig("home", R.drawable.ic_nav_home, R.string.nav_home)
@@ -33,12 +34,13 @@ sealed class NavigationConfig(var route: String, @DrawableRes var icon: Int, var
     object Calories: NavigationConfig("calories", R.drawable.ic_nav_calories, R.string.nav_calories)
     object Alcometer: NavigationConfig("alcometer", R.drawable.ic_nav_alcometer, R.string.nav_alcometer)
     object Location: NavigationConfig("location", R.drawable.ic_nav_location, R.string.nav_location)
+    object Todo: NavigationConfig("Todo", R.drawable.ic_nav_todo, R.string.nav_todo)
 
     companion object {
         @JvmStatic fun toList(): List<NavigationConfig> {
             return listOf(
                 Home, HRLimit, Bmi, Login, Sensors, Theme, Electricity,
-                Calories, Alcometer, Location
+                Calories, Alcometer, Location, Todo
             )
         }
     }
@@ -74,6 +76,7 @@ fun App() {
             composable(NavigationConfig.Calories.route) { CaloriesFragment() }
             composable(NavigationConfig.Alcometer.route) { AlcometerFragment() }
             composable(NavigationConfig.Location.route) { LocationFragment() }
+            composable(NavigationConfig.Todo.route) { TodoFragment() }
         }
     }
 }

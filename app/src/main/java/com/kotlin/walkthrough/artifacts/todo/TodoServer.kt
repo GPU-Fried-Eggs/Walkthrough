@@ -7,7 +7,7 @@ import com.kotlin.walkthrough.artifacts.todo.server.response.Response
 import com.kotlin.walkthrough.artifacts.todo.server.response.Status
 import java.util.concurrent.ConcurrentHashMap
 
-class TodoServer : HTTPServer(8088) {
+class TodoServer : HTTPServer(8686) {
     private var data: ConcurrentHashMap<Int, String> = ConcurrentHashMap()
 
     override fun serve(
@@ -18,19 +18,34 @@ class TodoServer : HTTPServer(8088) {
         files: Map<String, String>
     ): Response {
         return try {
-            when (uri) {
-                "/all" -> {
-                    Response(Status.OK, MimeType.MIME_JSON, "{${data.map { wrapper(it.key) }.joinToString()}}")
+            when (method) {
+                Method.GET -> {
+                    when (uri) {
+                        "/" -> {
+                            val id = parms["id"]?.toInt()
+                            if (id != null)
+                                Response(Status.OK, MimeType.MIME_JSON, wrapper(id))
+                            else
+                                Response(Status.OK, MimeType.MIME_JSON, "{${data.map { wrapper(it.key) }.joinToString()}}")
+                        }
+                        else -> {
+                            Response(Status.NOT_FOUND, MimeType.MIME_PLAINTEXT, "Invalid get request")
+                        }
+                    }
                 }
-                "/get" -> {
-                    val id = parms["id"]?.toInt()
-                    if (id != null)
-                        Response(Status.OK, MimeType.MIME_JSON, wrapper(id))
-                    else
-                        Response(Status.NOT_FOUND, MimeType.MIME_PLAINTEXT, "Invalid id")
+                Method.POST -> {
+                    when (uri) {
+                        "/" -> {
+                            data[data.size + 1] = files.values.toString()
+                            Response(Status.OK, MimeType.MIME_PLAINTEXT, "true")
+                        }
+                        else -> {
+                            Response(Status.NOT_FOUND, MimeType.MIME_PLAINTEXT, "Invalid post request")
+                        }
+                    }
                 }
                 else -> {
-                    Response(Status.NOT_FOUND, MimeType.MIME_PLAINTEXT, "Invalid request")
+                    Response(Status.NOT_FOUND, MimeType.MIME_PLAINTEXT, "Invalid method")
                 }
             }
         } catch (err: Exception) {
@@ -40,5 +55,11 @@ class TodoServer : HTTPServer(8088) {
 
     private fun wrapper(id: Int) : String {
         return "{id:$id,content:${data[id]}}"
+    }
+
+    companion object {
+        val instance: TodoServer by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            TodoServer()
+        }
     }
 }

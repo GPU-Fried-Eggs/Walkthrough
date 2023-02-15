@@ -10,9 +10,11 @@ import com.kotlin.walkthrough.artifacts.todo.server.threading.AsyncRunner
 import com.kotlin.walkthrough.artifacts.todo.server.threading.DefaultAsyncRunner
 import java.io.Closeable
 import java.io.IOException
+import java.io.OutputStream
 import java.net.InetSocketAddress
 import java.net.ServerSocket
 import java.net.Socket
+import java.net.SocketException
 import java.util.*
 
 const val SOCKET_READ_TIMEOUT = 5000
@@ -20,30 +22,36 @@ const val QUERY_STRING_PARAMETER = "QUERY_STRING_KEY"
 
 abstract class HTTPServer(val hostname: String?, val port: Int) {
     private var thread: Thread? = null
-    private var serverSocket: ServerSocket = ServerSocket()
+    private var serverSocket: ServerSocket? = null
     private val asyncRunner: AsyncRunner = DefaultAsyncRunner()
     private val tempFileManagerFactory: TempFileManagerFactory = DefaultTempFileManagerFactory()
 
-    init {
-        serverSocket.reuseAddress = true
-        serverSocket.bind(if (hostname != null) InetSocketAddress(hostname, port) else InetSocketAddress(port)) // if error, application must exist avoid unknown behaviour
-    }
-
-    constructor(port: Int) : this(null, port)
+    constructor(port: Int = 0) : this(null, port)
 
     fun start(timeout: Int = SOCKET_READ_TIMEOUT, daemon: Boolean = true) {
+        serverSocket = ServerSocket()
+        serverSocket?.reuseAddress = true
+
         thread = Thread {
+            try {
+                serverSocket?.bind(if (hostname != null) InetSocketAddress(hostname, port) else InetSocketAddress(port)) // if error, application must exist avoid unknown behaviour
+                Log.d("HTTPServer", "ServerSocket bind on ${serverSocket?.localSocketAddress ?: "NaN"}")
+            } catch (ioe: IOException) {
+                Log.d("HTTPServer", "Port has been used", ioe)
+                return@Thread
+            }
             do {
                 try {
-                    val finalAccept: Socket = serverSocket.accept()
+                    val finalAccept: Socket = serverSocket!!.accept()
                     if (timeout > 0) finalAccept.soTimeout = timeout
                     val inputStream = finalAccept.getInputStream()
                     if (inputStream == null) {
                         safeClose(finalAccept)
                     } else {
                         asyncRunner.exec {
-                            val outputStream = finalAccept.getOutputStream()
+                            var outputStream: OutputStream? = null
                             try {
+                                outputStream = finalAccept.getOutputStream()
                                 val tempFileManager = tempFileManagerFactory.create()
                                 val session = HTTPSession(this, tempFileManager, inputStream, outputStream)
                                 while (!finalAccept.isClosed) {
@@ -58,11 +66,13 @@ abstract class HTTPServer(val hostname: String?, val port: Int) {
                             }
                         }
                     }
+                } catch (se: SocketException) {
+                    Thread.sleep(10L)
                 } catch (ioe: IOException) {
                     Log.d("HTTPServer", "Communication with the client broken", ioe)
                     Thread.sleep(10L)
                 }
-            } while (!serverSocket.isClosed)
+            } while (serverSocket?.isClosed == false)
         }
         thread?.isDaemon = daemon
         thread?.name = "Main Listener"
@@ -116,12 +126,10 @@ fun safeClose(closeable: Any?) {
         when {
             closeable != null -> {
                 when (closeable) {
-                    is Closeable -> {
-                        closeable.close()
-                    }
-                    else -> {
-                        throw IllegalArgumentException("Unknown object to close")
-                    }
+                    is ServerSocket -> closeable.close()
+                    is Socket -> closeable.close()
+                    is Closeable -> closeable.close()
+                    else -> throw IllegalArgumentException("Unknown object to close")
                 }
             }
         }

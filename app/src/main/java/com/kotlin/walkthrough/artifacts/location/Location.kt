@@ -30,6 +30,7 @@ fun Location(
     locationViewModel: LocationViewModel = LocationViewModel(context)
 ) {
     val location by locationViewModel.getLocationLiveData().observeAsState()
+    var enableRealtime: Boolean by remember { mutableStateOf(false) }
     var enableGService: Boolean by remember { mutableStateOf(false) }
     var show: Boolean by remember { mutableStateOf(false) }
 
@@ -42,7 +43,7 @@ fun Location(
     }
 
     LocationRequest(context, show) {
-        locationViewModel.getLocationLiveData().getLocationData()
+        locationViewModel.getLocationLiveData().getLastLocationData()
         show = it
     }
 
@@ -75,8 +76,8 @@ fun Location(
                             brush,
                             cornerRadius = CornerRadius(10.dp.toPx())
                         )
-                }
-            },
+                    }
+                },
             tint = MaterialTheme.colors.surface
         )
         Row(
@@ -116,6 +117,17 @@ fun Location(
         }
         Button(
             onClick = {
+                locationViewModel.getLocationLiveData().getLastLocationData()
+                show = true
+            },
+            modifier = Modifier
+                .fillMaxWidth(0.85f)
+                .align(Alignment.CenterHorizontally)
+        ) {
+            Text(stringResource(R.string.location_last_button))
+        }
+        Button(
+            onClick = {
                 locationViewModel.getLocationLiveData().getLocationData()
                 show = true
             },
@@ -123,7 +135,19 @@ fun Location(
                 .fillMaxWidth(0.85f)
                 .align(Alignment.CenterHorizontally)
         ) {
-            Text(stringResource(R.string.location_button))
+            Text(stringResource(R.string.location_current_button))
+        }
+        Button(
+            onClick = {
+                locationViewModel.getLocationLiveData().getTraceLocationData(!enableRealtime)
+                enableRealtime = !enableRealtime
+                show = true
+            },
+            modifier = Modifier
+                .fillMaxWidth(0.85f)
+                .align(Alignment.CenterHorizontally)
+        ) {
+            Text(stringResource(if (enableRealtime) R.string.location_trace_on_button else R.string.location_trace_off_button))
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.kotlin.walkthrough.artifacts.navigation
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -24,25 +26,31 @@ fun Drawer(
 
     Column {
         DrawerHeader()
-        configs.forEach {
-            DrawerItem(
-                config = it,
-                selected = currentRoute == it.route,
-                onItemClick = { config ->
-                    navController.navigate(config.route) {
-                        navController.graph.startDestinationRoute?.let { route ->
-                            popUpTo(route) {
-                                saveState = true
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+        ) {
+            configs.forEach {
+                DrawerItem(
+                    config = it,
+                    selected = currentRoute == it.route,
+                    onItemClick = { config ->
+                        navController.navigate(config.route) {
+                            navController.graph.startDestinationRoute?.let { route ->
+                                popUpTo(route) {
+                                    saveState = true
+                                }
                             }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
+                        scope.launch {
+                            scaffoldState.drawerState.close()
+                        }
                     }
-                    scope.launch {
-                        scaffoldState.drawerState.close()
-                    }
-                }
-            )
+                )
+            }
         }
     }
 }

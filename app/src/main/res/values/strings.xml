@@ -14,6 +14,7 @@
     <string name="nav_calories">Calories</string>
     <string name="nav_alcometer">Alcometer</string>
     <string name="nav_location">Location</string>
+    <string name="nav_todo">Todo</string>
 
     <string name="hr_header">Heart Rate Limit</string>
     <string name="hr_age">Age</string>
@@ -52,7 +53,10 @@
     <string name="alcometer_submit">Calculate</string>
 
     <string name="location_header">Location</string>
-    <string name="location_button">Get current location</string>
+    <string name="location_last_button">Get last location</string>
+    <string name="location_current_button">Get current location</string>
+    <string name="location_trace_on_button">Stop trace location</string>
+    <string name="location_trace_off_button">Enable trace location</string>
     <string name="location_latitude">Latitude: %s</string>
     <string name="location_longitude">Longitude: %s</string>
     <string name="location_noGMS">Require play service for gms service. Please Login google account for active service</string>
