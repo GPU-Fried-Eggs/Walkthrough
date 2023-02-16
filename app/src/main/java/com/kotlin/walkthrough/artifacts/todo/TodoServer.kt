@@ -10,6 +10,12 @@ import java.util.concurrent.ConcurrentHashMap
 class TodoServer : HTTPServer(8686) {
     private var data: ConcurrentHashMap<Int, String> = ConcurrentHashMap()
 
+    init {
+        data[1] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        data[2] = "tellus molestie nunc non blandit, massa enim nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis."
+        data[3] = "viverra accumsan in nisl nisi scelerisque eu ultrices, vitae auctor eu augue ut lectus arcu bibendum at varius vel pharetra."
+    }
+
     override fun serve(
         uri: String?,
         method: Method?,
@@ -21,12 +27,12 @@ class TodoServer : HTTPServer(8686) {
             when (method) {
                 Method.GET -> {
                     when (uri) {
-                        "/" -> {
+                        "/todos" -> {
                             val id = parms["id"]?.toInt()
                             if (id != null)
                                 Response(Status.OK, MimeType.MIME_JSON, wrapper(id))
                             else
-                                Response(Status.OK, MimeType.MIME_JSON, "{${data.map { wrapper(it.key) }.joinToString()}}")
+                                Response(Status.OK, MimeType.MIME_JSON, "[${data.map { wrapper(it.key) }.joinToString()}]")
                         }
                         else -> {
                             Response(Status.NOT_FOUND, MimeType.MIME_PLAINTEXT, "Invalid get request")
@@ -35,7 +41,7 @@ class TodoServer : HTTPServer(8686) {
                 }
                 Method.POST -> {
                     when (uri) {
-                        "/" -> {
+                        "/todos" -> {
                             data[data.size + 1] = files.values.toString()
                             Response(Status.OK, MimeType.MIME_PLAINTEXT, "true")
                         }
@@ -54,7 +60,7 @@ class TodoServer : HTTPServer(8686) {
     }
 
     private fun wrapper(id: Int) : String {
-        return "{id:$id,content:${data[id]}}"
+        return "{\"id\":$id,\"content\":\"${data[id]}\"}"
     }
 
     companion object {

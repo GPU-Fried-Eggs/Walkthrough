@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.kotlin.walkthrough.R
+import com.kotlin.walkthrough.artifacts.location.viewmodel.LocationViewModel
 
 @Composable
 fun Location(

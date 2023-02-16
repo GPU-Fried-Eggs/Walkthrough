@@ -38,6 +38,11 @@ A learning diary of kotlin android development.
 <img src="docs/hrlimit.png">
 </details>
 
+<details>
+<summary>Heart rate limit</summary>
+<img src="docs/todo.png">
+</details>
+
 ## Question & Answer
 
 ### No Android SDK?

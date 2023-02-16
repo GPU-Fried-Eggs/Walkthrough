@@ -1,4 +1,4 @@
-package com.kotlin.walkthrough.artifacts.location
+package com.kotlin.walkthrough.artifacts.location.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
