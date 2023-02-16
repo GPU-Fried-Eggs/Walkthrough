@@ -39,7 +39,7 @@ A learning diary of kotlin android development.
 </details>
 
 <details>
-<summary>Heart rate limit</summary>
+<summary>Todo List</summary>
 <img src="docs/todo.png">
 </details>
 
